@@ -15,7 +15,7 @@ class CreateCategoriesTable extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('catgory_name', 20)->comment('英文名称');
+            $table->string('category_name', 20)->comment('英文名称');
             $table->string('slug', 20)->comment('英文标识符');
             $table->tinyInteger('sort')->comment('排序顺序');
             $table->string('status', 10)->default(1)->comment('1、启用，2、禁用');

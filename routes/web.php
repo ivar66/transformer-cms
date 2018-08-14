@@ -15,9 +15,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::Group(['prefix' => 'admin', 'namespace' => 'admin',], function () {
+Route::Group(['prefix' => 'admin', 'namespace' => 'admin', 'middleware' => ['auth', 'auth.admin']], function () {
     /*用户登陆*/
     Route::match(['get', 'post'], 'login', ['as' => 'admin.account.login', 'uses' => 'AccountController@login']);
+    /*用户退出登录*/
+    Route::get('logout', ['as' => 'admin.account.logout', 'uses' => 'AccountController@logout']);
+
 
     /*首页*/
     Route::match('get', 'index', ['as' => 'admin.index.index', 'uses' => 'IndexController@index']);
@@ -25,7 +28,10 @@ Route::Group(['prefix' => 'admin', 'namespace' => 'admin',], function () {
     /*内容*/
     Route::get('article', ['as' => 'admin.article.index', 'uses' => 'IndexController@index']);
     Route::get('tag', ['as' => 'admin.tag.index', 'uses' => 'IndexController@index']);
-    Route::get('category', ['as' => 'admin.category.index', 'uses' => 'IndexController@index']);
+    Route::get('category', ['as' => 'admin.category.index', 'uses' => 'CategoryController@index']);
+    Route::get('category/create', ['as' => 'admin.category.create', 'uses' => 'CategoryController@index']);
+    Route::get('category/destroy', ['as' => 'admin.category.destroy', 'uses' => 'CategoryController@index']);
+    Route::post('category/edit', ['as' => 'admin.category.edit', 'uses' => 'CategoryController@index']);
 });
 
 

@@ -195,3 +195,28 @@ if(! function_exists('get_user_avatar')){
         return route('website.image.avatar',['avatar_name'=>$user_id.'_'.$size.'.'.$extension]);
     }
 }
+
+/*公告状态文字定义*/
+if (! function_exists('trans_common_status')) {
+
+    function trans_common_status($status){
+        $map = [
+            0 => '待审核',
+            1 => '已审核',
+            -1 => '已禁言'
+        ];
+
+        if($status==='all'){
+            return $map;
+        }
+
+
+        if(isset($map[$status])){
+            return $map[$status];
+        }
+
+        return '';
+
+    }
+
+}

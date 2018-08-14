@@ -30,7 +30,7 @@ class AccountController extends Controller
 
             /*根据邮箱地址和密码进行认证*/
             if ($auth->attempt($credentials)) {
-//                Session::set("admin.login", true);
+                Session::put("admin.login", true);
                 /*认证成功后跳转到首页*/
                 return redirect()->to(route('admin.index.index'));
             }
@@ -45,5 +45,15 @@ class AccountController extends Controller
 
         }
         return view("admin.account.login");
+    }
+
+    /**
+     * 用户登出
+     */
+    public function logout()
+    {
+        Session::forget('admin.login');
+        return redirect()->guest(route('admin.account.login'));
+
     }
 }
