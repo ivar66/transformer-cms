@@ -26,10 +26,22 @@ Route::Group(['prefix' => 'admin', 'namespace' => 'admin', 'middleware' => ['aut
     Route::match('get', 'index', ['as' => 'admin.index.index', 'uses' => 'IndexController@index']);
 
     /*内容*/
-    
+
     /*文章管理*/
     Route::Group(['prefix' => 'article'], function () {
-        Route::get('', ['as' => 'admin.article.index', 'uses' => 'IndexController@index']);
+        Route::get('', ['as' => 'admin.article.index', 'uses' => 'ArticleController@index']);
+        /*文章创建页面*/
+        Route::get('/create', ['as' => 'admin.article.create', 'uses' => 'ArticleController@create']);
+        /*文章提交页面*/
+        Route::post('/store', ['as' => 'admin.article.store', 'uses' => 'ArticleController@store']);
+        /*文章审核*/
+        Route::post('/verify', ['as' => 'admin.article.verify', 'uses' => 'ArticleController@verify']);
+        /*文章删除*/
+        Route::post('/destroy', ['as' => 'admin.article.destroy', 'uses' => 'ArticleController@destroy']);
+
+        /*修改分类核*/
+        Route::post('/changeCategories', ['as' => 'admin.article.changeCategories', 'uses' => 'ArticleController@changeCategories']);
+
     });
 
     Route::get('tag', ['as' => 'admin.tag.index', 'uses' => 'IndexController@index']);

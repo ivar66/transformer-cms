@@ -221,3 +221,25 @@ if (! function_exists('trans_common_status')) {
     }
 
 }
+
+/*数据库Category表操作*/
+if (! function_exists('load_categories')) {
+
+    function load_categories( $type = 'all' ){
+        return app('App\Models\CategoryModel')->loadFromCache($type);
+    }
+
+}
+
+
+if(! function_exists('timestamp_format')){
+    function timestamp_format($date_time){
+        $timestamp = \Carbon\Carbon::instance(new DateTime($date_time));
+//        $time_format_string = Setting()->get('date_format').' '.Setting()->get('time_format');
+//        if(Setting()->get('time_friendly')==1){
+//            return $timestamp->diffInWeeks(\Carbon\Carbon::now()) >= 1 ? $timestamp->format($time_format_string) : $timestamp->diffForHumans();
+//        }
+        return $timestamp->format($timestamp);
+
+    }
+}

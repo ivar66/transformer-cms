@@ -20,4 +20,11 @@ class BaseController extends Controller
         Session::flash('message_type',2);
         return redirect($url);
     }
+
+    protected function error($url,$message)
+    {
+        Session::flash('message',$message);
+        Session::flash('message_type',1);
+        return redirect($url);
+    }
 }
