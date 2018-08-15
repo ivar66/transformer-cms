@@ -85,7 +85,7 @@ class ArticleController extends BaseController
             $file = $request->file('logo');
             $extension = $file->getClientOriginalExtension();
             $filePath = 'articles/'.gmdate("Y")."/".gmdate("m")."/".uniqid(str_random(8)).'.'.$extension;
-            Storage::disk('local')->put($filePath,File::get($file));
+            Storage::disk('public')->put($filePath,File::get($file));
             $data['logo'] = str_replace("/","-",$filePath);
         }
 
