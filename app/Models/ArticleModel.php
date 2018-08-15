@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ArticleModel extends BaseModel
 {
     //
+    use SoftDeletes;
     protected $table = 'articles';
     protected $fillable = [
       'user_id','category_id','title','content','status','summary','logo'

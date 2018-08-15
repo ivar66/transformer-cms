@@ -45,8 +45,8 @@ class CategoryController extends BaseController
      * edit get category information
      * GET /admin/category/edit?id={id}
      * @param Request $request
-     * @param $id
      * @return $this
+     * @internal param $id
      */
     public function edit(Request $request)
     {

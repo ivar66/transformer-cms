@@ -47,7 +47,7 @@ class ImageController extends Controller
     public function upload(Request $request)
     {
         $validateRules = [
-            'file' => 'required|image|max:'.config('tipask.upload.image.max_size'),
+            'file' => 'required|image|',
         ];
 
         if($request->hasFile('file')){

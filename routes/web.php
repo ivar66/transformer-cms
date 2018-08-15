@@ -60,3 +60,7 @@ Route::Group(['prefix' => 'admin', 'namespace' => 'admin', 'middleware' => ['aut
 
 Route::get('image/avatar/{avatar_name}', ['as' => 'website.image.avatar', 'uses' => 'ImageController@avatar'])->where(['avatar_name' => '[0-9]+_(small|middle|big|origin).jpg']);
 Route::get('image/show/{image_name}', ['as' => 'website.image.show', 'uses' => 'ImageController@show']);
+
+Route::Group(['middleware' => 'auth.admin'], function () {
+    Route::post('image/upload', ['as' => 'website.image.upload', 'uses' => 'ImageController@upload']);
+});

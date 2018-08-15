@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\ArticleModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
@@ -18,7 +19,11 @@ class ArticleController extends BaseController
         'category_id' => 'sometimes|numeric'
     ];
 
-    //
+    /**
+     * 文章管理-列表页
+     * @param Request $request
+     * @return $this
+     */
     public function index(Request $request)
     {
         $filter = $request->all();
@@ -58,45 +63,52 @@ class ArticleController extends BaseController
         return view("admin.article.index")->with('articles', $articles)->with('filter', $filter);
     }
 
+    /**
+     * 文章管理-添加文章
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function create()
     {
         return view('admin.article.create');
     }
 
+    /**
+     * 文章管理-提交文章
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function store(Request $request)
     {
         $request->flash();
-        $this->validate($request,$this->validateRules);
+        $this->validate($request, $this->validateRules);
         $currentUser = Auth::user();
         $data = [
-            'user_id'      => $currentUser->id,
-            'category_id'      => intval($request->input('category_id',0)),
-            'title'        => trim($request->input('title')),
-            'content'  => ($request->input('content')),
-            'summary'  => $request->input('summary'),
-            'status'       => 1,
+            'user_id' => $currentUser->id,
+            'category_id' => intval($request->input('category_id', 0)),
+            'title' => trim($request->input('title')),
+            'content' => ($request->input('content')),
+            'summary' => $request->input('summary'),
+            'status' => 1,
         ];
 
-        if($request->hasFile('logo')){
+        if ($request->hasFile('logo')) {
             $validateRules = [
                 'logo' => 'required|image',
             ];
-            $this->validate($request,$validateRules);
+            $this->validate($request, $validateRules);
             $file = $request->file('logo');
             $extension = $file->getClientOriginalExtension();
-            $filePath = 'articles/'.gmdate("Y")."/".gmdate("m")."/".uniqid(str_random(8)).'.'.$extension;
-            Storage::disk('public')->put($filePath,File::get($file));
-            $data['logo'] = str_replace("/","-",$filePath);
+            $filePath = 'articles/' . gmdate("Y") . "/" . gmdate("m") . "/" . uniqid(str_random(8)) . '.' . $extension;
+            Storage::disk('local')->put($filePath, File::get($file));
+            $data['logo'] = str_replace("/", "-", $filePath);
         }
-
-
 
         $article = ArticleModel::query()->create($data);
-        if ($article){
-            $message ='文章发布成功';
-            return $this->success(route('admin.article.index'),$message);
+        if ($article) {
+            $message = '文章发布成功';
+            return $this->success(route('admin.article.index'), $message);
         }
-        return  $this->error("文章发布失败，请稍后再试",route('website.index'));
+        return $this->error("文章发布失败，请稍后再试", route('admin.article.index'));
     }
 
     public function verify()
@@ -104,9 +116,20 @@ class ArticleController extends BaseController
 
     }
 
-    public function destroy()
+    /**
+     * 文章管理-删除文章
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function destroy(Request $request)
     {
-
+        $ids = $request->input('ids', []);
+        if (empty($ids)) {
+            $this->error("文章删除失败，请稍后再试", route('admin.article.index'));
+        }
+        ArticleModel::destroy($ids);
+        Artisan::call('cache:clear');
+        return $this->success(route('admin.article.index'), '文章删除成功');
     }
 
     public function changeCategories()

@@ -73,7 +73,7 @@
                                     </tr>
                                     @foreach($articles as $article)
                                         <tr>
-                                            <td><input type="checkbox" name="id[]" value="{{ $article->id }}"/></td>
+                                            <td><input type="checkbox" name="ids[]" value="{{ $article->id }}"/></td>
                                             <td><a href="#" target="_blank">{{ $article->title }}</a></td>
                                             <td>@if($article->category) {{ $article->category->category_name }} @else 无 @endif</td>
                                             <td>{{ $article->user->name }}<span class="text-muted">[UID:{{ $article->user_id }}]</span></td>
