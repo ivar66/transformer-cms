@@ -1,7 +1,7 @@
 
 <script type="text/javascript">
     //公告js变量设置
-    {{--var site_url = "{{ route('website.index') }}" ;--}}
+    var site_url = "{{ route('admin.index.index') }}" ;
 </script>
 
 <!-- jQuery 2.1.3 -->

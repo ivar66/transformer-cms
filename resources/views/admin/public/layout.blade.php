@@ -35,10 +35,10 @@
 
         <div class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
-            <span class="logo-mini"><b>T</b></span>
+            <span class="logo-mini"><b>K</b></span>
             <!-- logo for regular state and mobile devices -->
             <span class="logo-lg text-center">
-                <a class="navbar-brand admin_logo" href="{{ route('admin.index.index') }}"></a>
+                <a class="navbar-brand" href="{{ route('admin.index.index') }}">喝醉的清茶-管理后台</a>
             </span>
 
         </div>
