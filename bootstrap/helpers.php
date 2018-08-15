@@ -203,7 +203,8 @@ if (! function_exists('trans_common_status')) {
         $map = [
             0 => '待审核',
             1 => '已审核',
-            -1 => '已禁言'
+            -1 => '已禁言',
+            2 => '已禁用'
         ];
 
         if($status==='all'){

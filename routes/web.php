@@ -26,12 +26,23 @@ Route::Group(['prefix' => 'admin', 'namespace' => 'admin', 'middleware' => ['aut
     Route::match('get', 'index', ['as' => 'admin.index.index', 'uses' => 'IndexController@index']);
 
     /*内容*/
-    Route::get('article', ['as' => 'admin.article.index', 'uses' => 'IndexController@index']);
+    
+    /*文章管理*/
+    Route::Group(['prefix' => 'article'], function () {
+        Route::get('', ['as' => 'admin.article.index', 'uses' => 'IndexController@index']);
+    });
+
     Route::get('tag', ['as' => 'admin.tag.index', 'uses' => 'IndexController@index']);
-    Route::get('category', ['as' => 'admin.category.index', 'uses' => 'CategoryController@index']);
-    Route::get('category/create', ['as' => 'admin.category.create', 'uses' => 'CategoryController@index']);
-    Route::get('category/destroy', ['as' => 'admin.category.destroy', 'uses' => 'CategoryController@index']);
-    Route::post('category/edit', ['as' => 'admin.category.edit', 'uses' => 'CategoryController@index']);
+    /*分类管理*/
+    Route::Group(['prefix' => 'category'], function () {
+        Route::get('', ['as' => 'admin.category.index', 'uses' => 'CategoryController@index']);
+        Route::get('create', ['as' => 'admin.category.create', 'uses' => 'CategoryController@create']);
+        Route::post('store', ['as' => 'admin.category.store', 'uses' => 'CategoryController@store']);
+        Route::delete('destroy', ['as' => 'admin.category.destroy', 'uses' => 'CategoryController@destroy']);
+        Route::get('edit', ['as' => 'admin.category.edit', 'uses' => 'CategoryController@edit']);
+        Route::put('update', ['as' => 'admin.category.update', 'uses' => 'CategoryController@update']);
+    });
+
 });
 
 

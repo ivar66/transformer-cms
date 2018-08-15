@@ -12,10 +12,10 @@
                         <input name="_method" type="hidden" value="PUT">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <div class="box-body">
-                            <div class="form-group @if($errors->has('name')) has-error @endif">
+                            <div class="form-group @if($errors->has('category_name')) has-error @endif">
                                 <label>分类名称</label>
-                                <input type="text" name="name" class="form-control " placeholder="分类名称" value="{{ old('name',$category->name) }}">
-                                @if($errors->has('name')) <p class="help-block">{{ $errors->first('name') }}</p> @endif
+                                <input type="text" name="category_name" class="form-control " placeholder="分类名称" value="{{ old('category_name',$category->category_name) }}">
+                                @if($errors->has('category_name')) <p class="help-block">{{ $errors->first('category_name') }}</p> @endif
                             </div>
 
                             <div class="form-group @if($errors->has('slug')) has-error @endif">
@@ -24,16 +24,6 @@
                                 <input type="text" name="slug" class="form-control " placeholder="分类标识" value="{{ old('slug',$category->slug) }}">
                                 @if($errors->has('slug')) <p class="help-block">{{ $errors->first('slug') }}</p> @endif
                             </div>
-
-                            {{--<div class="form-group">--}}
-                                {{--<label>栏目</label>--}}
-                                {{--<span class="text-muted">(允许显示的栏目)</span>--}}
-                                {{--<div class="checkbox">--}}
-                                    {{--@foreach( config('tipask.category_types') as $key => $name )--}}
-                                        {{--<input type="checkbox" name="types[]" value="{{ $key }}" @if(str_contains($category->type,$key)) checked @endif > {{ $name }} &nbsp;&nbsp;--}}
-                                    {{--@endforeach--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
 
                             <div class="form-group @if($errors->has('sort')) has-error @endif">
                                 <label>排序</label>
@@ -47,10 +37,10 @@
                                 <span class="text-muted">(禁用后前台不会显示)</span>
                                 <div class="radio">
                                     <label>
-                                        <input type="radio" name="status" value="1" checked /> 启用
+                                        <input type="radio" name="status" value="1" @if(old('sort',$category->status) ==1)checked @endif /> 启用
                                     </label>&nbsp;&nbsp;
                                     <label>
-                                        <input type="radio" name="status" value="0" /> 禁用
+                                        <input type="radio" name="status" value="2" @if(old('sort',$category->status) ==2)checked @endif /> 禁用
                                     </label>
                                 </div>
                             </div>
