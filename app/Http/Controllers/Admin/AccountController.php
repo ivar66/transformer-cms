@@ -9,7 +9,12 @@ use Illuminate\Support\Facades\Session;
 
 class AccountController extends Controller
 {
-    //
+    /**
+     * 登录接口
+     * @param Request $request
+     * @param Guard $auth
+     * @return $this|\Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     */
     public function login(Request $request, Guard $auth)
     {
         /*登录表单处理*/
@@ -54,6 +59,5 @@ class AccountController extends Controller
     {
         Session::forget('admin.login');
         return redirect()->guest(route('admin.account.login'));
-
     }
 }

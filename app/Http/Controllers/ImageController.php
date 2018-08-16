@@ -12,9 +12,12 @@ class ImageController extends Controller
 {
 
     /**
+     *
      * 显示用户头像
+     *
      * @param $avatar_name
-     * @return mixed
+     *
+     * @return \Illuminate\Http\Response
      */
     public function avatar($avatar_name)
     {
@@ -29,8 +32,13 @@ class ImageController extends Controller
         return $response;
     }
 
-
-
+    /**
+     * 显示照片
+     *
+     * @param $image_name
+     *
+     * @return mixed
+     */
     public function show($image_name)
     {
         $imageFile = storage_path('app/'.str_replace("-","/",$image_name));
@@ -42,8 +50,13 @@ class ImageController extends Controller
     }
 
 
-
-    /*编辑器图片上传*/
+    /**
+     * 编辑器图片上传
+     *
+     * @param Request $request
+     *
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     */
     public function upload(Request $request)
     {
         $validateRules = [

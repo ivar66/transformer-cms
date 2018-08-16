@@ -13,15 +13,15 @@ class ArticleController extends BaseController
 {
     protected $validateRules = [
         'title' => 'required|min:5|max:255',
-        'content' => 'required|min:5|max:16777215',
+        'content' => 'required|min:25|max:16777215',
         'summary' => 'sometimes|max:255',
-//        'tags' => 'sometimes|max:128',
         'category_id' => 'sometimes|numeric'
     ];
 
     /**
      * 文章管理-列表页
      * @param Request $request
+     *
      * @return $this
      */
     public function index(Request $request)
@@ -75,6 +75,7 @@ class ArticleController extends BaseController
     /**
      * 文章管理-提交文章
      * @param Request $request
+     *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function store(Request $request)
@@ -111,14 +112,83 @@ class ArticleController extends BaseController
         return $this->error("文章发布失败，请稍后再试", route('admin.article.index'));
     }
 
-    public function verify()
+    /**
+     * 文章管理-编辑文章
+     * @param Request $request
+     * @param $id
+     *
+     * @return $this
+     */
+    public function edit(Request $request, $id)
     {
+        $article = ArticleModel::find($id);
 
+        if (!$article) {
+            abort(404);
+        }
+        return view("admin.article.edit")->with(compact('article'));
+    }
+
+    /**
+     * 文章管理-边界文章-提交
+     *
+     * @param Request $request
+     *
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function update(Request $request)
+    {
+        $article_id = $request->input('id');
+        $article = ArticleModel::find($article_id);
+        if (!$article) {
+            abort(404);
+        }
+        $request->flash();
+
+        $this->validate($request, $this->validateRules);
+
+        $article->title = trim($request->input('title'));
+        $article->content = ($request->input('content'));
+        $article->summary = $request->input('summary');
+        $article->category_id = $request->input('category_id', 0);
+
+        if ($request->hasFile('logo')) {
+            $validateRules = [
+                'logo' => 'required|image',
+            ];
+            $this->validate($request, $validateRules);
+            $file = $request->file('logo');
+            $extension = $file->getClientOriginalExtension();
+            $filePath = 'articles/' . gmdate("Y") . "/" . gmdate("m") . "/" . uniqid(str_random(8)) . '.' . $extension;
+            Storage::disk('local')->put($filePath, File::get($file));
+            $article->logo = str_replace("/", "-", $filePath);
+        }
+
+        $article->save();
+
+        return $this->success(route('admin.article.index'), "文章编辑成功");
+    }
+
+    /**
+     * 文章管理-审核文章
+     * @param Request $request
+     *
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function verify(Request $request)
+    {
+        $articleIds = $request->input('ids', []);
+        if (empty($articleIds)) {
+            return $this->error("文章审核失败，请稍后再试", route('admin.article.index'));
+        }
+        ArticleModel::query()->whereIn('id', $articleIds)->update(['status' => 1]);
+        return $this->success(route('admin.article.index') . '?status=0', '文章审核成功');
     }
 
     /**
      * 文章管理-删除文章
      * @param Request $request
+     *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function destroy(Request $request)
@@ -132,8 +202,19 @@ class ArticleController extends BaseController
         return $this->success(route('admin.article.index'), '文章删除成功');
     }
 
-    public function changeCategories()
+    /**
+     * 文章管理-修改分类
+     * @param Request $request
+     *
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function changeCategories(Request $request)
     {
-
+        $ids = $request->input('ids', '');
+        $categoryId = $request->input('category_id', 0);
+        if ($ids) {
+            ArticleModel::whereIn('id', explode(",", $ids))->update(['category_id' => $categoryId]);
+        }
+        return $this->success(route('admin.article.index'), '分类修改成功');
     }
 }

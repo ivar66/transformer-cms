@@ -34,7 +34,7 @@
             var form_id = $("#change_category_from #form_id").val();
             var form_action = $("#change_category_from #form_action").val();
             var ids = new Array();
-            $("#"+form_id+" input[name='id[]']:checkbox").each(function(i){
+            $("#"+form_id+" input[name='ids[]']:checkbox").each(function(i){
                 if(true == $(this).is(':checked')){
                     ids.push($(this).val());
                 }
