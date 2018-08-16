@@ -16,3 +16,8 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::Group(['prefix' => 'article', 'namespace' => 'Api',], function () {
+    //最新的N条新闻
+    Route::get('/new_articles', 'ArticleController@newArticle');
+});
