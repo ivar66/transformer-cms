@@ -57,6 +57,17 @@ Route::Group(['prefix' => 'admin', 'namespace' => 'admin', 'middleware' => ['aut
         Route::put('update', ['as' => 'admin.category.update', 'uses' => 'CategoryController@update']);
     });
 
+    /*首页-内容-Banner管理*/
+    Route::Group(['prefix' => 'banner'], function () {
+        Route::get('', ['as' => 'admin.banner.index', 'uses' => 'BannerController@index']);
+        Route::get('create', ['as' => 'admin.banner.create', 'uses' => 'BannerController@create']);
+        Route::post('store', ['as' => 'admin.banner.store', 'uses' => 'BannerController@store']);
+        Route::delete('destroy', ['as' => 'admin.banner.destroy', 'uses' => 'BannerController@destroy']);
+        Route::get('edit', ['as' => 'admin.banner.edit', 'uses' => 'BannerController@edit']);
+        Route::put('update', ['as' => 'admin.banner.update', 'uses' => 'BannerController@update']);
+    });
+
+
 });
 
 
