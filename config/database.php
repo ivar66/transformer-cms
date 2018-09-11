@@ -53,7 +53,20 @@ return [
             'strict' => true,
             'engine' => null,
         ],
-
+        'spider_mysql' => [
+            'driver' => 'mysql',
+            'host' => env('SPIDER_DB_HOST', '127.0.0.1'),
+            'port' => env('SPIDER_DB_PORT', '3306'),
+            'database' => env('SPIDER_DB_DATABASE', 'forge'),
+            'username' => env('SPIDER_DB_USERNAME', 'forge'),
+            'password' => env('SPIDER_DB_PASSWORD', ''),
+            'unix_socket' => env('SPIDER_DB_SOCKET', ''),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            'strict' => true,
+            'engine' => null,
+        ],
         'pgsql' => [
             'driver' => 'pgsql',
             'host' => env('DB_HOST', '127.0.0.1'),
