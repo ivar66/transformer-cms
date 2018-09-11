@@ -16,22 +16,29 @@
                     <form role="form" name="addForm" method="POST" enctype="multipart/form-data" action="{{ route('admin.banner.store') }}">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <div class="box-body">
-                            <div class="form-group @if($errors->has('title')) has-error @endif">
+                            <div class="form-group @if($errors->has('banner_name')) has-error @endif">
                                 <label for="title">banner标题:</label>
-                                <input id="title" type="text" name="title"  class="form-control input-sm" placeholder="banner 名称" value="{{ old('title','') }}" />
-                                @if($errors->has('title')) <p class="help-block">{{ $errors->first('title') }}</p> @endif
+                                <input id="title" type="text" name="banner_name"  class="form-control input-sm" placeholder="banner 名称" value="{{ old('banner_name','') }}" />
+                                @if($errors->has('banner_name')) <p class="help-block">{{ $errors->first('banner_name') }}</p> @endif
                             </div>
 
-                            <div class="form-group @if($errors->has('logo')) has-error @endif">
+                            <div class="form-group @if($errors->has('banner_pic_url')) has-error @endif">
                                 <label>banner封面</label>
-                                <input type="file" name="logo"/>
-                                @if($errors->has('logo')) <p class="help-block">{{ $errors->first('logo') }}</p> @else <p class="help-block">建议尺寸200*120</p> @endif
+                                <input type="file" name="banner_pic_url"/>
+                                @if($errors->has('banner_pic_url')) <p class="help-block">{{ $errors->first('banner_pic_url') }}</p> @else <p class="help-block">建议尺寸800*120</p> @endif
                             </div>
 
-                            <div class="form-group @if($errors->has('title')) has-error @endif">
-                                <label for="title">banner标题:</label>
-                                <input id="title" type="text" name="title"  class="form-control input-sm" placeholder="banner 名称" value="{{ old('title','') }}" />
-                                @if($errors->has('title')) <p class="help-block">{{ $errors->first('title') }}</p> @endif
+                            <div class="form-group @if($errors->has('banner_url')) has-error @endif">
+                                <label for="title">banner跳转url:</label>
+                                <input id="title" type="text" name="banner_url"  class="form-control input-sm" placeholder="banner跳转url" value="{{ old('banner_url','') }}" />
+                                @if($errors->has('banner_url')) <p class="help-block">{{ $errors->first('banner_url') }}</p> @endif
+                            </div>
+
+                            <div class="form-group @if($errors->has('sort')) has-error @endif">
+                                <label>排序</label>
+                                <input type="text" name="sort" class="form-control " placeholder="排序：默认为0"
+                                       value="{{ old('sort','') }}">
+                                @if($errors->has('sort')) <p class="help-block">{{ $errors->first('sort') }}</p> @endif
                             </div>
 
                             <div class="form-group">

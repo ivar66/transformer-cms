@@ -19,7 +19,9 @@ class CreateBannersTable extends Migration
             $table->string('banner_url')->comment('banner点击url');
             $table->string('banner_pic_url')->comment('banner图片url');
             $table->integer('sort')->comment('当前排序顺序，越大越前')->default(0);
-            $table->tinyInteger('status')->comment('banner状态 0:未发布，1：发布 2：下架');
+            $table->tinyInteger('status')->comment('banner状态 ，1：发布 2：未发布')->default(2);
+            $table->string('creator_name',50)->comment('创建人');
+            $table->string('creator_uid',50)->comment('创建人UID');
             $table->timestamps();
         });
     }
