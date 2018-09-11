@@ -32,6 +32,7 @@ class CreateZhaopingJobsTable extends Migration
             $table->string('district')->comment('地区')->nullable();
             $table->string('first_type')->comment('职位第一分类')->nullable();
             $table->string('second_type')->comment('职位第二分类')->nullable();
+            $table->string('job_url')->comment('岗位地址')->nullable();
             $table->timestamps();
         });
     }
