@@ -15,7 +15,7 @@ Route::get('/admin', function () {
     return redirect('/admin/login');
 });
 
-Route::Group(['prefix' => 'Admin', 'namespace' => 'admin', 'middleware' => ['auth.admin']], function () {
+Route::Group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['auth.admin']], function () {
     /*用户登陆*/
     Route::match(['get', 'post'], 'login', ['as' => 'admin.account.login', 'uses' => 'AccountController@login']);
     /*用户退出登录*/
