@@ -1,7 +1,7 @@
 <?php
 
 Route::get('/', function () {
-    return redirect('/blog');
+    return redirect('/articles');
 });
 
 /**
@@ -12,5 +12,5 @@ Route::Group([ 'namespace' => 'web'], function () {
     Route::match('get', 'articles/{category_name?}', ['as' => 'web.blog.index', 'uses' => 'BlogController@index']);
 
     /*文章详情页*/
-    Route::get('/article/{article_id}', ['as' => 'admin.blog.detail', 'uses' => 'BlogController@detail']);
+    Route::get('/article/{article_id}', ['as' => 'web.blog.detail', 'uses' => 'BlogController@detail']);
 });

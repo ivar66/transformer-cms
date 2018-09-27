@@ -35,7 +35,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <div class="logo"><a class="navbar-brand logo" href="#"></a></div>
+                <div class="logo"><a class="navbar-brand logo" href="#"><strong>喝醉的清茶</strong></a></div>
             </div>
 
             <div class="collapse navbar-collapse" id="global-navbar">
@@ -87,10 +87,10 @@
         <div class="text-center">
             <a href="{{ route('web.blog.index') }}">小白白的个人空间</a><span class="span-line">|</span>
             <a href="mailto:625079860@qq.com" target="_blank">联系我们</a><span class="span-line">|</span>
-            <a href="http://www.miibeian.gov.cn" target="_blank">ICP</a>
+            <a href="http://www.miibeian.gov.cn" target="_blank">京ICP备18028786</a>
         </div>
         <div class="copyright mt-10">
-            Powered By <a href="http://www.lovecathy.cn" target="_blank"></a> ©2009-{{ gmdate('Y') }} lovecathy.cn
+            Powered By <a href="http://www.lovecathy.cn" target="_blank"></a> ©2017-{{ gmdate('Y') }} lovecathy.cn
         </div>
     </div>
 </footer>

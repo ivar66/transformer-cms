@@ -2,7 +2,9 @@
 
 namespace App\Exceptions;
 
+use BadMethodCallException;
 use Exception;
+use HttpException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 class Handler extends ExceptionHandler
@@ -46,6 +48,19 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if ($exception instanceof BadMethodCallException){
+            return response()->view('errors.' . 404, ['message'=>'NOT FOUND'], 404);
+        }
+        /* 错误页面 */
+        if ($exception instanceof Exception) {
+            $code = $exception->getStatusCode();
+
+            if (view()->exists('errors.' . $code)) {
+                $message  = $exception->getMessage();
+                return response()->view('errors.' . $exception->getStatusCode(), ['message'=>$message], $exception->getStatusCode());
+            }
+        }
+
         return parent::render($request, $exception);
     }
 }
