@@ -52,8 +52,8 @@ class Handler extends ExceptionHandler
             return response()->view('errors.' . 404, ['message'=>'NOT FOUND'], 404);
         }
         /* 错误页面 */
-        if ($exception instanceof Exception) {
-            $code = $exception->getStatusCode();
+        if ($exception instanceof HttpException) {
+            $code = $exception->getStatusCode()??404;
 
             if (view()->exists('errors.' . $code)) {
                 $message  = $exception->getMessage();
