@@ -9,6 +9,7 @@ class ArticleModel extends BaseModel
     //
     use SoftDeletes;
     protected $table = 'articles';
+    protected $primaryKey = 'id';
     protected $fillable = [
       'user_id','category_id','title','content','status','summary','logo'
     ];

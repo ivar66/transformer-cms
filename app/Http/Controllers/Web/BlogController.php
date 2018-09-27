@@ -25,4 +25,13 @@ class BlogController extends Controller
         $articles = $articleQuery->paginate(10);
         return view('web.blog.index')->with(compact('categories','currentCategoryId','articles'));
     }
+
+    public function detail(Request $request,$article_id){
+        $article = ArticleModel::query()->where('id',$article_id)->first();
+        $article->increment('views');
+        if (!$article){
+            abort(404);
+        }
+        return view('web.blog.detail')->with(compact('article'));
+    }
 }
