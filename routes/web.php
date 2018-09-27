@@ -7,7 +7,7 @@ Route::get('/', function () {
 /**
  * 文章相关模块
  */
-Route::Group([ 'namespace' => 'web'], function () {
+Route::Group([ 'namespace' => 'Web'], function () {
     /*文章列表页*/
     Route::match('get', 'articles/{category_name?}', ['as' => 'web.blog.index', 'uses' => 'BlogController@index']);
 
