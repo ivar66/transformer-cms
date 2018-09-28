@@ -55,6 +55,15 @@
 @section('js')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/jquery.share.min.js"></script>
     <script>
-        $('.social-share').share();
+        $('.social-share').share(
+            {
+                // title:'',
+                wechatQrcodeTitle:'扫描一下，分享给大家哦～',
+                wechatQrcodeHelper:"<p>微信扫一下</p><p>可将本文分享至朋友圈。</p>"
+                //参考资料
+                //https://blog.csdn.net/kingrome2017/article/details/77946766
+                //https://www.npmjs.com/package/social-share
+            }
+        );
     </script>
 @endsection
