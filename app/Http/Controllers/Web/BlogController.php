@@ -22,7 +22,7 @@ class BlogController extends Controller
             $articleQuery->where('category_id',$currentCategoryId);
         }
         $categories = CategoryModel::query()->get();
-        $articles = $articleQuery->paginate(10);
+        $articles = $articleQuery->orderBy('created_at','desc')->paginate(10);
         return view('web.blog.index')->with(compact('categories','currentCategoryId','articles'));
     }
 

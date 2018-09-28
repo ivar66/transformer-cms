@@ -5,15 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-{{--    <title>@yield('seo_title',Setting()->get('website_name'))</title>--}}
-    <meta name="keywords" content=")" />
-    <meta name="description" content="" />
+    <title>@yield('seo_title','喝醉的清茶')</title>
+    <meta name="keywords" content="@yield('seo_keyword','喝醉的清茶')" />
+    <meta name="description" content="@yield('seo_description','这是个有趣的博客网站')" />
     <meta name="author" content="drunkTea" />
     <meta name="copyright" content="lovecathy.cn" />
+    <link rel="shortcut icon" href="https://ziyuan.baidu.com/favicon.ico" type="image/x-icon" />
 <!-- Bootstrap -->
     <link href="{{ asset('/static/css/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('/static/css/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" />
-    <link href="{{ asset('/css/web/global.css')}}?v={{ config('tipask.release') }}" rel="stylesheet" />
+    <link href="{{ asset('/css/web/global.css')}}" rel="stylesheet" />
 @yield('css')
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -74,15 +75,15 @@
 
 <footer id="footer">
     <div class="container">
+        @if(isset($friendshipLinks))
         @if(request()->route()->getName() == 'web.blog.index')
             <ul class="list-unstyled list-inline">
                 <li>友情链接</li>
-                @if(isset($friendshipLinks))
                 @foreach($friendshipLinks as $link)
                     <li><a target="_blank" href="{{ $link->url }}" title="{{ $link->slogan }}">{{ $link->name }}</a></li>
                 @endforeach
-                    @endif
             </ul>
+        @endif
         @endif
         <div class="text-center">
             <a href="{{ route('web.blog.index') }}">小白白的个人空间</a><span class="span-line">|</span>
@@ -103,6 +104,6 @@
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="{{ asset('/static/css/bootstrap/js/bootstrap.min.js') }}"></script>
 
-
+@yield('js')
 </body>
 </html>

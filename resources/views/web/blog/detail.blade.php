@@ -1,8 +1,12 @@
 @extends('web.layout.public')
-
+@section('seo_title'){{'喝醉的清茶-'.$article->title }}@endsection
+@section('seo_keyword'){{'喝醉的清茶-'.$article->title }}@endsection
+@section('seo_description'){{'喝醉的清茶-'.$article->summary }}@endsection
 @section('css')
     <link href="{{ asset('/static/js/fancybox/jquery.fancybox.min.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
 @endsection
+
 @section('content')
     <div class="row mt-10">
         <div class="col-xs-12 col-md-9 main">
@@ -38,8 +42,19 @@
                                 {{--@endif--}}
                         </ul>
                     </div>
+                    <div class="mb-10">
+                        <div class="social-share share-component" data-mobile-sites="weibo,qq,qzone,tencent,wechat">
+
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+@endsection
+@section('js')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/jquery.share.min.js"></script>
+    <script>
+        $('.social-share').share();
+    </script>
 @endsection

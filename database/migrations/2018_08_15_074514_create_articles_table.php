@@ -19,7 +19,7 @@ class CreateArticlesTable extends Migration
             $table->string('logo', 255)->comment('文章logo')->nullable();
             $table->tinyInteger('category_id')->comment('分类ID')->default(0);
             $table->string('title')->comment('文章标题');
-            $table->string('summary')->comment('文章简述');
+            $table->string('summary')->comment('文章简述')->nullable();
             $table->text('content')->comment('文章内容');
             $table->integer('views')->comment('浏览量')->default(0);
             $table->integer('comments')->comment('回复数')->default(0);
