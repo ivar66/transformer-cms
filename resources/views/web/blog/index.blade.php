@@ -4,7 +4,7 @@
         <div class="col-xs-12 col-md-9 main">
             @if(isset($categories) and $categories )
                 <div class="widget-category clearfix mb-10">
-                        <ul class="nav nav-tabs mb-10 mt-20">
+                        <ul class="nav nav-tabs mb-10">
                             <li @if( 0 == $currentCategoryId ) class="active" @endif ><a href="{{ route('web.blog.index') }}">全部</a></li>
                             @foreach( $categories as $category )
                                 <li @if( $category->id == $currentCategoryId ) class="active" @endif ><a href="{{ route('web.blog.index',['category_slug'=>$category->slug]) }}">{{ $category->category_name }}</a></li>
