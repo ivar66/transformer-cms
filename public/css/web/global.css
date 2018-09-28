@@ -246,7 +246,7 @@ ul{list-style: none;padding: 0;}
 .taglist--block>li{margin-bottom:8px}
 
 /*分类模块样式定义*/
-.widget-category{padding:15px 0;border: 1px solid #f0f5f3;border-radius: 4px;}
+.widget-category{padding:15px 0;border-bottom: 1px solid #f0f5f3;border-radius: 4px;}
 .widget-category .list>li{float:left;position:relative;height:30px;line-height:30px;font-size:14px;margin:0 10px 10px 0}
 .widget-category .list a{display:block;padding:0 10px;border-radius:30px;text-decoration:none;border:1px solid #daecf5;}
 .widget-category .list a:hover{color:#004e31;}
