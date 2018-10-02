@@ -24,7 +24,7 @@
                         <div class="box-body">
                             <div class="form-group @if($errors->has('title')) has-error @endif">
                                 <label for="title">文章标题:</label>
-                                <input id="title" type="text" name="title"  class="form-control input-lg" placeholder="我想起那天下午在夕阳下的奔跑,那是我逝去的青春" value="{{ old('title','') }}" />
+                                <input id="title" type="text" name="title"  class="form-control input-lg" placeholder="这是一个标题" value="{{ old('title','') }}" />
                                 @if($errors->has('title')) <p class="help-block">{{ $errors->first('title') }}</p> @endif
                             </div>
 
@@ -40,9 +40,10 @@
                                 @if($errors->has('content')) <p class="help-block">{{ $errors->first('content') }}</p> @endif
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group @if($errors->has('summary')) has-error @endif">
                                 <label for="editor">文章导读：</label>
                                 <textarea name="summary" class="form-control" placeholder="文章摘要">{{ old('summary','') }}</textarea>
+                                @if($errors->has('summary')) <p class="help-block">{{ $errors->first('summary') }}</p> @endif
                             </div>
 
                             <div class="row">
@@ -82,8 +83,8 @@
             $('#article_editor').summernote({
                 lang: 'zh-CN',
                 height: 350,
-                placeholder:'撰写2文章',
-                toolbar: [ {!! config('project.summernote.blog') !!} ],
+                placeholder:'写文章啦～',
+                {{--toolbar: [ {!! config('project.summernote.blog') !!} ],--}}
                 callbacks: {
                     onChange:function (contents, $editable) {
                         var code = $(this).summernote("code");

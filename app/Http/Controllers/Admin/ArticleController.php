@@ -14,7 +14,7 @@ class ArticleController extends BaseController
     protected $validateRules = [
         'title' => 'required|min:5|max:255',
         'content' => 'required|min:25|max:16777215',
-        'summary' => 'sometimes|max:255',
+        'summary' => 'required|min:5',
         'category_id' => 'sometimes|numeric'
     ];
 
