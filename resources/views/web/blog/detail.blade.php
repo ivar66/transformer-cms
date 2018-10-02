@@ -34,7 +34,7 @@
                             </li>
                             <li>阅读 ( {{$article->views}} )</li>
                             @if($article->category_id)
-                                <li>分类：<a href="{{ route('web.blog.index',['category_slug'=>$article->category->slug]) }}" target="_blank">{{ $article->category->name }}</a>
+                                <li>分类：<a href="{{ route('web.blog.index',['category_slug'=>$article->category->slug]) }}" target="_blank">{{ $article->category->category_name }}</a>
                                 </li>
                             @endif
                                 {{--@if($article->status !== 2 && Auth()->check() && (Auth()->user()->id === $article->user_id || Auth()->user()->is('admin') ) )--}}

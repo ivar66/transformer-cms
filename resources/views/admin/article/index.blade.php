@@ -87,7 +87,7 @@
                                     @foreach($articles as $article)
                                         <tr>
                                             <td><input type="checkbox" name="ids[]" value="{{ $article->id }}"/></td>
-                                            <td><a href="#" target="_blank">{{ $article->title }}</a></td>
+                                            <td><a href="{{ route('web.blog.detail',['article_id'=>$article->id]) }}" target="_blank">{{ $article->title }}</a></td>
                                             <td>@if($article->category) {{ $article->category->category_name }} @else
                                                     无 @endif</td>
                                             <td>{{ $article->user->name }}<span
