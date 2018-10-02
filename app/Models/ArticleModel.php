@@ -10,6 +10,13 @@ class ArticleModel extends BaseModel
     use SoftDeletes;
     protected $table = 'articles';
     protected $primaryKey = 'id';
+
+    //待审核
+    const JUDEGE_STATUS = 0;
+    //审核通过
+    const PASS_STATUS = 1;
+
+
     protected $fillable = [
       'user_id','category_id','title','content','status','summary','logo'
     ];

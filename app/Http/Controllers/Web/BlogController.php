@@ -12,7 +12,7 @@ class BlogController extends Controller
     //
     public function index($categorySlug='all'){
         $currentCategoryId = 0;
-        $articleQuery = ArticleModel::query();
+        $articleQuery = ArticleModel::query()->where('status',ArticleModel::PASS_STATUS);
         if( $categorySlug != 'all' ){
             $category = CategoryModel::where("slug","=",$categorySlug)->first();
             if(!$category){
