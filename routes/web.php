@@ -13,4 +13,7 @@ Route::Group([ 'namespace' => 'Web'], function () {
 
     /*文章详情页*/
     Route::get('/article/{article_id}', ['as' => 'web.blog.detail', 'uses' => 'BlogController@detail']);
+
+
+    Route::get('/sitemap',['as'=>'web.sitemap','uses'=>'SiteMapController@index']);
 });
