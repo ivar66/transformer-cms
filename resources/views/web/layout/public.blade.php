@@ -19,7 +19,7 @@
     <meta name="description" content="@yield('seo_description','这是个有趣的博客网站')" />
     <meta name="author" content="drunkTea" />
     <meta name="copyright" content="lovecathy.cn" />
-    <link rel="shortcut icon" href="https://ziyuan.baidu.com/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="/favicon2.ico" type="image/x-icon" />
 <!-- Bootstrap -->
     <link href="{{ asset('/static/css/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('/static/css/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" />
