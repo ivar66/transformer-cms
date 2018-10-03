@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="shortcut icon" href="/favicon2.ico" type="image/x-icon" />
     <title>@yield('title') - 管理后台</title>
     <!-- Bootstrap 3.3.2 -->
     <link href="{{ asset('/static/css/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css"/>
