@@ -45,7 +45,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <div class="logo"><a class="navbar-brand logo" href="#"><strong>喝醉的清茶</strong></a></div>
+                <div class="logo"><a class="navbar-brand logo" href="{{ route('web.blog.index') }}"><strong>喝醉的清茶</strong></a></div>
             </div>
 
             <div class="collapse navbar-collapse" id="global-navbar">
