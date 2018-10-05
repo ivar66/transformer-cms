@@ -21,7 +21,7 @@ class BlogController extends Controller
             $currentCategoryId = $category->id;
             $articleQuery->where('category_id',$currentCategoryId);
         }
-        $categories = CategoryModel::query()->get();
+        $categories = CategoryModel::loadFromCache();
         $articles = $articleQuery->orderBy('created_at','desc')->paginate(10);
         return view('web.blog.index')->with(compact('categories','currentCategoryId','articles'));
     }
