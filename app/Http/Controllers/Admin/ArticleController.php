@@ -151,6 +151,7 @@ class ArticleController extends BaseController
         $article->content = ($request->input('content'));
         $article->summary = $request->input('summary');
         $article->category_id = $request->input('category_id', 0);
+        $article->status = $request->input('status', 1);
 
         if ($request->hasFile('logo')) {
             $validateRules = [
