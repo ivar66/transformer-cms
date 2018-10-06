@@ -89,7 +89,7 @@ class ArticleController extends BaseController
             'title' => trim($request->input('title')),
             'content' => ($request->input('content')),
             'summary' => $request->input('summary'),
-            'status' => 1,
+            'status' => $request->input('status'),
         ];
 
         if ($request->hasFile('logo')) {

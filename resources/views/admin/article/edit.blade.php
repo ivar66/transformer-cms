@@ -60,7 +60,18 @@
                                     </select>
                                 </div>
                             </div>
-
+                            <div class="form-group">
+                                <label>状态</label>
+                                <span class="text-muted">(禁用后前台不会显示)</span>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="status" value="1" checked/> 启用
+                                    </label>&nbsp;&nbsp;
+                                    <label>
+                                        <input type="radio" name="status" value="0"/> 禁用
+                                    </label>
+                                </div>
+                            </div>
 
                         </div>
                         <div class="box-footer">
