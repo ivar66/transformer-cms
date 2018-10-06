@@ -9,7 +9,11 @@ use App\Http\Controllers\Controller;
 
 class BlogController extends Controller
 {
-    //
+    /**
+     * 文章列表页面
+     * @param string $categorySlug
+     * @return $this
+     */
     public function index($categorySlug='all'){
         $currentCategoryId = 0;
         $articleQuery = ArticleModel::query()->where('status',ArticleModel::PASS_STATUS);
@@ -26,12 +30,18 @@ class BlogController extends Controller
         return view('web.blog.index')->with(compact('categories','currentCategoryId','articles'));
     }
 
+    /**
+     * 文章详情页面
+     * @param Request $request
+     * @param $article_id
+     * @return $this
+     */
     public function detail(Request $request,$article_id){
-        $article = ArticleModel::query()->where('id',$article_id)->first();
-        $article->increment('views');
+        $article = ArticleModel::query()->where('id',$article_id)->where('status',ArticleModel::PASS_STATUS)->first();
         if (!$article){
             abort(404);
         }
+        $article->increment('views');
         return view('web.blog.detail')->with(compact('article'));
     }
 }
