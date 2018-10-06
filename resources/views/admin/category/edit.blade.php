@@ -37,10 +37,10 @@
                                 <span class="text-muted">(禁用后前台不会显示)</span>
                                 <div class="radio">
                                     <label>
-                                        <input type="radio" name="status" value="1" @if(old('sort',$category->status) ==1)checked @endif /> 启用
+                                        <input type="radio" name="status" value="1" @if(old('status',$category->status) ==1)checked @endif /> 启用
                                     </label>&nbsp;&nbsp;
                                     <label>
-                                        <input type="radio" name="status" value="2" @if(old('sort',$category->status) ==2)checked @endif /> 禁用
+                                        <input type="radio" name="status" value="2" @if(old('status',$category->status) ==2)checked @endif /> 禁用
                                     </label>
                                 </div>
                             </div>
