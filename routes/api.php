@@ -21,3 +21,6 @@ Route::Group(['prefix' => 'article', 'namespace' => 'Api',], function () {
     //最新的N条新闻
     Route::get('/new_articles', 'ArticleController@newArticle');
 });
+
+
+Route::get('ajax/loadTags',['as'=>'web.ajax.loadTags','uses'=>'AjaxController@loadTags']);

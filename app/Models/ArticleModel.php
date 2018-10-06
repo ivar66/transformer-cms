@@ -2,11 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\Traits\MorphManyTagsTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ArticleModel extends BaseModel
 {
     //
+    use MorphManyTagsTrait;
     use SoftDeletes;
     protected $table = 'articles';
     protected $primaryKey = 'id';

@@ -21,6 +21,8 @@
                 <div class="box box-default">
                     <form role="form" name="addForm" method="POST" enctype="multipart/form-data" action="{{ route('admin.article.update',['id'=>$article->id]) }}">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <input type="hidden" id="tags" name="tags" value=@if(isset($article->tags)){{ $article->tags->implode('tag_name',',') }} @else""@endif />
+
                         <div class="box-body">
                             <div class="form-group @if($errors->has('title')) has-error @endif">
                                 <label for="title">文章标题:</label>
@@ -52,14 +54,26 @@
 
                             </div>
 
-                            <div class="row">
+                            <div class="form-group">
                                 <label>分类选择</label>
-                                <div class="col-xs-4">
-                                    <select name="category_id" id="category_id" class="form-control">
-                                        <option value="0">请选择分类</option>
-                                        @include('admin.category.option',['type'=>'articles','select_id'=>old('category_id',$article->category_id)])
-                                    </select>
+                                <div>
+                                    <div class="col-xs-4">
+                                        <select name="category_id" id="category_id" class="form-control">
+                                            <option value="0">请选择分类 {{ $article->category_id }}</option>
+                                            @include('admin.category.option',['type'=>'articles','select_id'=>old('category_id',$article->category_id)])
+                                        </select>
+                                    </div>
+                                    <div class="col-xs-8">
+                                        <select id="select_tags" name="select_tags" class="form-control" multiple="multiple" >
+                                            @if(isset($article->tags))
+                                            @foreach($article->tags as $tag)
+                                            <option selected="selected">{{ $tag->tag_name }}</option>
+                                            @endforeach
+                                            @endif
+                                        </select>
+                                    </div>
                                 </div>
+
                             </div>
                             <div class="form-group">
                                 <label>状态</label>
@@ -123,6 +137,38 @@
                 }
             });
 
+        });
+
+        $(function(){
+            /*标签自动选择*/
+            if( $("#select_tags").length > 0 ){
+                $("#select_tags").select2({
+                    theme:'bootstrap',
+                    placeholder: "选择话题",
+                    ajax: {
+                        url: '/api/ajax/loadTags',
+                        dataType: 'json',
+                        delay: 250,
+                        data: function (params) {
+                            return {
+                                word: params.term
+                            };
+                        },
+                        processResults: function (data) {
+                            return {
+                                results: data
+                            };
+                        },
+                        cache: true
+                    },
+                    minimumInputLength:1,
+                    tags:true
+                });
+                $("#select_tags").change(function(){
+                    console.log($("#select_tags").val());
+                    $("#tags").val($("#select_tags").val());
+                });
+            }
         });
     </script>
 @endsection

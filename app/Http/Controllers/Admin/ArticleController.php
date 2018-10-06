@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\ArticleModel;
+use App\Models\TagModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
@@ -105,7 +106,13 @@ class ArticleController extends BaseController
         }
 
         $article = ArticleModel::query()->create($data);
+        /*判断文章是否添加成功*/
         if ($article) {
+
+            /*添加标签*/
+            $tagString = trim($request->input('tags'));
+            TagModel::multiSave($tagString, $article);
+
             $message = '文章发布成功';
             return $this->success(route('admin.article.index'), $message);
         }
@@ -166,6 +173,10 @@ class ArticleController extends BaseController
         }
 
         $article->save();
+
+        /*添加标签*/
+        $tagString = trim($request->input('tags'));
+        TagModel::multiSave($tagString, $article);
 
         return $this->success(route('admin.article.index'), "文章编辑成功");
     }

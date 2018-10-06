@@ -20,9 +20,9 @@ class CategoryModel extends BaseModel
      */
     public static function loadFromCache()
     {
-        $globalCategories = Cache::rememberForever('global_categories', function () {
+        return Cache::remember('global_categories',5,function (){
             return self::where('status', '=', 1)->orderBy('sort', 'asc')->orderBy('created_at', 'asc')->get();
+
         });
-        return $globalCategories;
     }
 }

@@ -21,6 +21,7 @@
                 <div class="box box-default">
                     <form role="form" name="addForm" method="POST" enctype="multipart/form-data" action="{{ route('admin.article.store') }}">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <input type="hidden" id="tags" name="tags" value="" />
                         <div class="box-body">
                             <div class="form-group @if($errors->has('title')) has-error @endif">
                                 <label for="title">文章标题:</label>
@@ -46,16 +47,26 @@
                                 @if($errors->has('summary')) <p class="help-block">{{ $errors->first('summary') }}</p> @endif
                             </div>
 
-                            <div class="row">
-                                <label>分类选择</label>
-                                <div class="col-xs-4">
-                                    <select name="category_id" id="category_id" class="form-control">
-                                        <option value="0">请选择分类</option>
-                                        @include('admin.category.option',['type'=>'articles','select_id'=>old('category_id',0)])
-                                    </select>
-                                </div>
-                            </div>
                             <div class="form-group">
+                                <label>分类选择</label>
+                                <div style="margin-bottom: 50px;">
+                                    <div class="col-xs-4">
+                                        <select name="category_id" id="category_id" class="form-control">
+                                            <option value="0">请选择分类</option>
+                                            @include('admin.category.option',['type'=>'articles','select_id'=>old('category_id',0)])
+                                        </select>
+                                    </div>
+                                    <div class="col-xs-8">
+                                        <select id="select_tags" name="select_tags" class="form-control" multiple="multiple" >
+                                            @foreach(array_filter(explode(",",old('select_tags',''))) as $tag)
+                                                <option selected="selected">{{ $tag }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="form-group" style="margin-top: 20px">
                                 <label>状态</label>
                                 <span class="text-muted">(禁用后前台不会显示)</span>
                                 <div class="radio">
@@ -81,16 +92,14 @@
 @endsection
 
 @section('script')
-    <script type="text/javascript">
-        $(function () {
-            set_active_menu('manage_content',"{{ route('admin.article.index') }}");
-        });
-    </script>
     <script src="{{ asset('/static/js/summernote/summernote.min.js') }}"></script>
     <script src="{{ asset('/static/js/summernote/lang/summernote-zh-CN.min.js') }}"></script>
     <script src="{{ asset('/static/js/select2/js/select2.min.js')}}"></script>
 
     <script type="text/javascript">
+        $(function () {
+            set_active_menu('manage_content',"{{ route('admin.article.index') }}");
+        });
         $(document).ready(function() {
             $('#article_editor').summernote({
                 lang: 'zh-CN',
@@ -108,6 +117,35 @@
                 }
             });
 
+        });
+
+        $(function(){
+            $("#select_tags").select2({
+                theme:'bootstrap',
+                placeholder: "认证领域，例如法律、互联网、电脑等不超过5个词语",
+                ajax: {
+                    url: '/api/ajax/loadTags',
+                    dataType: 'json',
+                    delay: 250,
+                    data: function (params) {
+                        return {
+                            word: params.term
+                        };
+                    },
+                    processResults: function (data) {
+                        return {
+                            results: data
+                        };
+                    },
+                    cache: true
+                },
+                minimumInputLength:1,
+                tags:true
+            });
+
+            $("#select_tags").change(function(){
+                $("#tags").val($("#select_tags").val());
+            });
         });
     </script>
 @endsection
