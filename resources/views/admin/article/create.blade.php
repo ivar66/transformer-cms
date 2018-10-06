@@ -47,6 +47,7 @@
                             </div>
 
                             <div class="row">
+                                <label>分类选择</label>
                                 <div class="col-xs-4">
                                     <select name="category_id" id="category_id" class="form-control">
                                         <option value="0">请选择分类</option>
