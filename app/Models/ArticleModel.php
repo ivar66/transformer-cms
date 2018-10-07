@@ -31,4 +31,13 @@ class ArticleModel extends BaseModel
     {
         return $this->belongsTo('App\User');
     }
+
+    /*获取相关文章*/
+    public static function correlations($tagIds,$article_id,$size=6)
+    {
+        $relationArticles = self::whereHas('tags', function($query) use ($tagIds) {
+            $query->whereIn('tag_id', $tagIds);
+        })->where('status',self::PASS_STATUS)->where('id','<>',$article_id)->orderBy('created_at','DESC')->take($size)->get();
+        return $relationArticles;
+    }
 }

@@ -42,6 +42,8 @@ class BlogController extends Controller
             abort(404);
         }
         $article->increment('views');
-        return view('web.blog.detail')->with(compact('article'));
+        /*相关文章*/
+        $relatedArticles = ArticleModel::correlations($article->tags->pluck('id'),$article_id);
+        return view('web.blog.detail')->with(compact('article','relatedArticles'));
     }
 }

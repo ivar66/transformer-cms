@@ -44,10 +44,30 @@
                     </div>
                     <div class="mb-10">
                         <div class="social-share share-component" data-mobile-sites="weibo,qq,qzone,tencent,wechat">
-
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <div class="widget-relation">
+                <div class="row">
+                    @if(isset($relatedArticles) && count($relatedArticles)>0)
+                    <div class="col-md-12">
+                        <h4>你可能感兴趣的文章</h4>
+                        <ul class="widget-links list-unstyled">
+                            @foreach($relatedArticles as $relatedArticle)
+                                @if($relatedArticle->id != $article->id)
+                                    <li class="widget-links-item">
+                                        <a title="{{ $relatedArticle->title }}" href="{{ route('web.blog.detail',['article_id'=>$relatedArticle->id]) }}">{{ $relatedArticle->title }}</a>
+                                        <small class="text-muted">{{ $relatedArticle->views }} 浏览</small>
+                                    </li>
+                                @endif
+                            @endforeach
+                        </ul>
+                    </div>
+                    @endif
+                </div>
+
             </div>
         </div>
     </div>
