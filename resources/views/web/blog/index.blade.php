@@ -55,10 +55,16 @@
                 @endif
         </div><!-- /.main -->
         <div class="col-xs-12 col-md-3 side">
-            <div class="side-alert alert alert-warning">
-                <p>今天，有什么经验需要分享呢？</p>
-                <a href="#" class="btn btn-primary btn-block mt-10">立即撰写</a>
-            </div>
+            {{--<div class="side-alert alert alert-warning">--}}
+                {{--<p>今天，有什么经验需要分享呢？</p>--}}
+                {{--<a href="#" class="btn btn-primary btn-block mt-10">立即撰写</a>--}}
+            {{--</div>--}}
+            {{--<div class="side-alert alert alert-warning">--}}
+                {{--<ul class="panel_head"><span>test-新浪微博</span></ul>--}}
+                {{--<ul class="panel_body">--}}
+                    {{--<iframe class="side-alert alert alert-warning" id="weibo" style="width:300px; height:300px;" frameborder="0" scrolling="yes" src="http://v.t.sina.com.cn/widget/widget_blog.php?uid=3170527197"></iframe>--}}
+                {{--</ul>--}}
+            {{--</div>--}}
         </div>
     </div>
 @endsection

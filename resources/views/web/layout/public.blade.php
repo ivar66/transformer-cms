@@ -48,17 +48,19 @@
                 <div class="logo"><a class="navbar-brand logo" href="{{ route('web.blog.index') }}"><strong>喝醉的清茶</strong></a></div>
             </div>
 
-            <div class="collapse navbar-collapse" id="global-navbar">
-                <form class="navbar-form navbar-left" role="search" id="top-search-form" action="#" method="GET">
+            <div class="collapse navbar-collapse" style="width: 870px;" id="global-navbar">
+
+                <ul class="nav navbar-nav">
+                    <li @if(request()->route()->getName() == 'web.blog.index') class="active" @endif><a href="{{ route('web.blog.index') }}">文章</a></li>
+                    <li @if(request()->route()->getName() == 'web.topic.index') class="active" @endif><a href="{{ route('web.topic.index') }}">话题</a></li>
+                    <li @if(request()->route()->getName() == 'web.member.index') class="active" @endif><a href="{{ route('web.member.index') }}">关于我</a></li>
+                </ul>
+                <form class="navbar-form hidden-sm hidden-xs pull-right" role="search" id="top-search-form" action="#" method="GET">
                     <div class="input-group">
                         <input type="text" name="word" id="searchBox" class="form-control" placeholder="" />
                         <span class="input-group-addon btn" ><span id="search-button" class="glyphicon glyphicon-search" aria-hidden="true"></span></span>
                     </div>
                 </form>
-                <ul class="nav navbar-nav">
-                    <li @if(request()->route()->getName() == 'web.blog.index') class="active" @endif><a href="{{ route('web.blog.index') }}">文章</a></li>
-                </ul>
-
             </div>
         </div>
     </nav>
