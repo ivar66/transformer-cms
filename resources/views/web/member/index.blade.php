@@ -12,20 +12,19 @@
                 <h3 class="panel-title">Who am I?</h3>
             </div>
             <div class="panel-body">
-                <button class="btn btn-info" type="button">
+                <button class="btn btn-info" type="button" style="margin: 5px;">
                     <span class="badge">Age</span>&nbsp;&nbsp;90后
                 </button>&nbsp;
 
-                <button class="btn btn-primary" type="button">
+                <button class="btn btn-primary" style="margin: 5px;" type="button">
                     <span class="badge">毕业院校</span>&nbsp;&nbsp;北京化工大学 计算机专业
                 </button>
-                </br></br>
 
-                <button class="btn btn-warning" type="button">
+                <button class="btn btn-warning" style="margin: 5px;" type="button">
                     <span class="badge">联系方式</span>
                     625079860@qq.com
                 </button>
-                <button class="btn btn-success" type="button">
+                <button class="btn btn-success" style="margin: 5px;" type="button">
                     <span class="badge">hobby</span>
                     reading,travel
                 </button>
