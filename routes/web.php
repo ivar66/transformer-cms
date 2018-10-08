@@ -21,7 +21,7 @@ Route::Group([ 'namespace' => 'Web'], function () {
     Route::get('/topic/{topic_id}/{source_type?}',['as'=>'web.topic.detail','uses'=>'TagController@detail']);
 
     /*关于我*/
-    Route::get('/member',['as'=>'web.member.index','uses'=>'TagController@detail']);
+    Route::get('/member',['as'=>'web.member.index','uses'=>'MemberController@index']);
 
     //sitemap
     Route::get('/sitemap',['as'=>'web.sitemap','uses'=>'SiteMapController@index']);
