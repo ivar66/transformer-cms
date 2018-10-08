@@ -40,8 +40,7 @@ class TagModel extends BaseModel
 
     public function articles()
     {
-        return $this->morphedByMany('App\Models\ArticleModel', 'taggable','taggables','taggable_id','tag_id');
-//                return $this->morphToMany('App\Models\TagModel','taggable','taggables','taggable_id','tag_id');
+        return $this->morphedByMany('App\Models\ArticleModel', 'taggable','taggables','tag_id','taggable_id');
 
     }
 
