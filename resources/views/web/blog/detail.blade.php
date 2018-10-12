@@ -26,6 +26,13 @@
                     <div class="text-fmt">
                         {!! $article->content !!}
                     </div>
+
+                    <div class="mb-10" style="display: flex;justify-content: center">
+                        <button type="button" style="margin: 20px auto" class="btn btn-danger btn-lg mt15" data-toggle="modal" data-target="#myModal">
+                            赞赏一下
+                        </button>
+                    </div>
+
                     <div class="post-opt mt-30">
                         <ul class="list-inline text-muted">
                             <li>
@@ -42,6 +49,7 @@
                                 {{--@endif--}}
                         </ul>
                     </div>
+
                     <div class="mb-10">
                         <div class="social-share share-component" data-mobile-sites="weibo,qq,qzone,tencent,wechat">
                         </div>
@@ -71,6 +79,34 @@
             </div>
         </div>
     </div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document" style="width: 400px;height: 200px">
+        <div class="modal-content" style="width: 400px;height: 200px">
+            {{--<div class="modal-header">--}}
+                {{--<button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
+                    {{--<span aria-hidden="true">×</span>--}}
+                {{--</button>--}}
+                {{--<h4 class="modal-title" id="myModalLabel"></h4>--}}
+            {{--</div>--}}
+            <div class="modal-body">
+                <div class="img-class" style="width: 350px;height: 300px; display: flex;flex-direction: row">
+                    <div class="zhifubao" style="width: 160px;height: 160px; ">
+                        <img src="{{ asset('/static/images/zhifubao.png') }}" style="width: 160px;height: 160px;border: 1px solid black"  alt="支付宝">
+                        <span>支付宝</span>
+                    </div>
+                    <div class="weixin" style="width: 160px;height: 160px;margin-left: 20px;">
+                        <img src="{{ asset('/static/images/weixin.png') }}" style="width: 160px;height: 160px;border: 1px solid black" alt="微信">
+                        <span>微信</span>
+                    </div>
+                    &nbsp;
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
 @endsection
 @section('js')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/jquery.share.min.js"></script>
