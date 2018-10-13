@@ -25,9 +25,16 @@ class BlogController extends Controller
             $currentCategoryId = $category->id;
             $articleQuery->where('category_id',$currentCategoryId);
         }
+
+        $seoTDK = [
+            'seo_title'=> '喝醉的清茶-文章-'.(('all'==$categorySlug)?'全部信息':$category->category_name),
+            'seo_keyword'=> '喝醉的清茶-文章-'.(('all'==$categorySlug)?'全部信息':$category->category_name),
+            'seo_description'=> '喝醉的清茶-文章-'.(('all'==$categorySlug)?'全部类别信息':$category->category_name),
+        ];
+
         $categories = CategoryModel::loadFromCache();
         $articles = $articleQuery->orderBy('created_at','desc')->paginate(10);
-        return view('web.blog.index')->with(compact('categories','currentCategoryId','articles'));
+        return view('web.blog.index')->with(compact('categories','currentCategoryId','articles','seoTDK'));
     }
 
     /**

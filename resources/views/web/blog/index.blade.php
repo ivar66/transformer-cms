@@ -1,4 +1,7 @@
 @extends('web.layout.public')
+@section('seo_title'){{ $seoTDK['seo_title'] }}@endsection
+@section('seo_keyword'){{$seoTDK['seo_keyword'] }}@endsection
+@section('seo_description'){{ $seoTDK['seo_description'] }}@endsection
 @section('content')
     <div class="row mt-10">
         <div class="col-xs-12 col-md-9 main">
