@@ -20,6 +20,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::Group(['prefix' => 'article', 'namespace' => 'Api',], function () {
     //最新的N条新闻
     Route::get('/new_articles', 'ArticleController@newArticle');
+    // 获取文章详情
+    Route::get('/{id}/detail', 'ArticleController@articleDetail');
 });
 
 

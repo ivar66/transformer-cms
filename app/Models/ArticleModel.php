@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Traits\MorphManyTagsTrait;
+use App\User;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ArticleModel extends BaseModel
@@ -22,9 +23,28 @@ class ArticleModel extends BaseModel
     protected $fillable = [
       'user_id','category_id','title','content','status','summary','logo'
     ];
+
+    protected $appends = [
+        'user_name','category_name'
+    ];
+
     public function category()
     {
         return $this->belongsTo('App\Models\CategoryModel');
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCategoryNameAttribute(){
+        return CategoryModel::query()->where('id',$this->category_id)->value('category_name');
+    }
+    /**
+     * 获取作者姓名
+     * @return mixed
+     */
+    public function getUserNameAttribute(){
+        return User::query()->where('id',$this->user_id)->value('name');
     }
 
     public function user()
