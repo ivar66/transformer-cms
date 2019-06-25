@@ -24,5 +24,10 @@ Route::Group(['prefix' => 'article', 'namespace' => 'Api',], function () {
     Route::get('/{id}/detail', 'ArticleController@articleDetail');
 });
 
+Route::Group(['prefix' => 'banner', 'namespace' => 'Api',], function () {
+    //banner 列表
+    Route::get('/banner_lists', 'BannerController@bannerList');
+
+});
 
 Route::get('ajax/loadTags',['as'=>'web.ajax.loadTags','uses'=>'AjaxController@loadTags']);
