@@ -33,14 +33,14 @@ class BannerController extends BaseController
     {
         $request->flash();
         $this->validate($request, $this->validateRules);
-        $currentUser = Auth::user();
+//        $currentUser = Auth::user();
         $data = [
-            'creator_uid' => $currentUser->id,
-            'creator_name' => $currentUser->name,
+//            'creator_uid' => $currentUser->id,
+//            'creator_name' => $currentUser->name,
             'banner_name' => trim($request->input('banner_name')),
             'banner_url' => ($request->input('banner_url')),
             'sort' => $request->input('sort',0),
-            'status' => 2,
+            'status' => $request->input('status','0'),
         ];
 
         if ($request->hasFile('banner_pic_url')) {
@@ -52,9 +52,8 @@ class BannerController extends BaseController
             $extension = $file->getClientOriginalExtension();
             $filePath = 'banners/' . gmdate("Y") . "/" . gmdate("m") . "/" . uniqid(str_random(8)) . '.' . $extension;
             Storage::disk('local')->put($filePath, File::get($file));
-            $data['logo'] = $filePath;///str_replace("/", "-", $filePath);
+            $data['banner_pic_url'] = str_replace("/", "-", $filePath);
         }
-        dd($data);
         $article = BannerModel::query()->create($data);
         if ($article) {
             $message = 'banner发布成功';

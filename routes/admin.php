@@ -75,7 +75,9 @@ Route::get('image/avatar/{avatar_name}', [
     'uses' => 'ImageController@avatar'
 ])->where(['avatar_name' => '[0-9]+_(small|middle|big|origin).jpg']);
 
+# 获取图片信息
 Route::get('image/show/{image_name}', ['as' => 'website.image.show', 'uses' => 'ImageController@show']);
+
 
 /*编辑器上传图片*/
 Route::Group(['middleware' => 'auth.admin'], function () {
