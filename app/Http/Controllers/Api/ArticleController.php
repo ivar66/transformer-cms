@@ -19,7 +19,7 @@ class ArticleController extends Controller
     public function newArticle(Request $request)
     {
         $number = $request->input('number', 10);
-        $articles = ArticleModel::query()->orderBy('id', 'desc')->limit($number)->get();
+        $articles = ArticleModel::query()->where('status',ArticleModel::PASS_STATUS)->orderBy('id', 'desc')->limit($number)->get();
         if (count($articles)) {
             $item = [];
             foreach ($articles as $article) {
