@@ -99,7 +99,7 @@
         <div class="text-center">
             <a href="{{ route('web.blog.index') }}">小白白的个人空间</a><span class="span-line">|</span>
             <a href="mailto:625079860@qq.com" target="_blank">联系我们</a><span class="span-line">|</span>
-            <a href="http://www.miibeian.gov.cn" target="_blank">京ICP备18028786</a>
+            <a href="http://www.beian.miit.gov.cn/" target="_blank">京ICP备18028786</a>
         </div>
         <div class="copyright mt-10">
             Powered By <a href="http://www.lovecathy.cn" target="_blank"></a> ©2017-{{ gmdate('Y') }} lovecathy.cn
